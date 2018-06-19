@@ -61,4 +61,5 @@ typings/
 package-lock.json
 
 # Out directory
-out
+out/*
+!out/example.json

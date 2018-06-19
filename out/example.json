@@ -1,0 +1,19 @@
+{
+  "games": [
+    {
+      "_id": "gDu4xVBeQIOyz5QeQyi6doWUiMAt3xk0",
+      "gameUrl": "https://www.nintendo.com/games/detail/gDu4xVBeQIOyz5QeQyi6doWUiMAt3xk0",
+      "imgUrl":
+        "https://media.nintendo.com/nintendo/bin/oE4FXBI2NI4MjpOnSzXkQfasbr0D8Itu/fa3lOWQidaMN74nZG2Lwtb8ztqnliGnx.jpg",
+      "title": "\"Aha! I Got It!\" Escape Game",
+      "status": "Released",
+      "releaseDate": "2009-11-02T08:00:00.000Z",
+      "sale": null,
+      "price": null,
+      "system": "Wii",
+      "numPlayers": "1 player",
+      "genre": "Action Adventure",
+      "asOfDate": "2018-06-19T23:27:42.713Z"
+    }
+  ]
+}
