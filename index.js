@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
-const fs = require('fs');
 const path = require('path');
+const fs = require('fs');
 
 const getHtml = async genre => {
   const browser = await puppeteer.launch();
@@ -72,12 +72,18 @@ const scrape = async () => {
     $('a').each((i, elem) => {
       const gameElem = $(elem);
       const game = {
-        id: gameElem.data('game-id'),
-        url: gameElem.attr('href'),
-        title: gameElem.data('game-title'),
+        _id: gameElem.data('game-id'),
+        url: 'https' + gameElem.attr('href'),
+        title: gameElem.data('game-title') || gameElem.find('h3.b3').text(),
         nsuid: gameElem.data('game-nsuid'),
-        img: gameElem.find('img').attr('src'),
-        status: gameElem.find('.row-date strong').text(),
+        img: 'https' + gameElem.find('img').attr('src'),
+        status:
+          gameElem
+            .find('.row-date strong')
+            .text()
+            .toLowerCase() === 'releases'
+            ? 'Coming Soon'
+            : gameElem.find('.row-date strong').text(),
         ReleaseDate: gameElem
           .find('.row-date')
           .text()
@@ -108,11 +114,16 @@ const scrape = async () => {
   fs.writeFileSync(
     path.join(
       __dirname,
-      `./out/nintendo-${now.getDate()}-${now.getMonth()}-${now.getFullYear()}.json`
+      `./out/nintendo-${now.getMonth() + 1}-${now.getDate()}-${now.getFullYear()}.json`
     ),
     JSON.stringify(games, null, 2)
   );
   console.log('Done!');
 };
 
-scrape();
+try {
+  scrape();
+} catch (err) {
+  console.log(err);
+  process.exit(1);
+}
