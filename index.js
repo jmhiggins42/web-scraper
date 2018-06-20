@@ -73,16 +73,10 @@ const scrape = async page => {
 
     // loading html
     const html = await getHtml(page, genres[0]);
-    if (genre === 'Role Playing') {
-      fs.writeFileSync(path.join(__dirname, './out/test.html'), html);
-    }
     const $ = cheerio.load(html);
 
     // parsing gameElement
     $('div.row:not(".game-info")').each((i, elem) => {
-      if (i === 5) {
-        fs.writeFileSync(path.join(__dirname, `./out/test-${genre}-${i}.html`), $(elem).html());
-      }
       const gameElem = $(elem);
       const [, , , , numPlayers] = Array.from(gameElem.find('.col12').contents()).map(
         el => (el.innerText ? el.innerText.trim() : el.nodeValue ? el.nodeValue.trim() : '')
@@ -161,7 +155,7 @@ const scrape = async page => {
   console.log('Done!');
 };
 
-// main()
+// Main Function
 (async () => {
   try {
     const { browser, page } = await openBrowser();

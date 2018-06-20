@@ -1,7 +1,7 @@
 {
   "name": "webscraper",
   "version": "1.2.0",
-  "description": "An example web scraping app",
+  "description": "A console app that parses through a certain eShop store front containing asynchronously loading scripts and scrapes the information into a JSON object.",
   "main": "index.js",
   "scripts": {
     "start": "node index",
@@ -10,7 +10,6 @@
   "author": "John Higgins",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.18.0",
     "cheerio": "^1.0.0-rc.2",
     "moment": "^2.22.2",
     "puppeteer": "^1.5.0"
